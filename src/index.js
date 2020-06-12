@@ -4,8 +4,10 @@ const shutdown = require('electron-shutdown-command');
 const si = require('systeminformation');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let pjson = require('../package.json');
+let fs = require('fs');
 
 let mainWindow
+let printInfo = true
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -16,7 +18,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
-    kiosk: true,
+    kiosk: false,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -32,6 +34,8 @@ const createWindow = () => {
     mainWindow = null
   })
   
+  printDeviceInfo()
+
 };
 
 /*
@@ -54,17 +58,14 @@ app.whenReady().then(() => {
     console.log('Opening change host modal..')
     mainWindow.webContents.send("change-host-view", "change host")
   })
-  //reboot app
+  //  reboot device
   globalShortcut.register('CommandOrControl+A+J', () => {
     console.log('Rebooting device..')
     rebootDevice()
   })
-  globalShortcut.register('CommandOrControl+U', () => {
-      console.log('Opening change host modal..')
-      mainWindow.webContents.send("change-host-view", "change host")
-  })
+  //  Opens debTools
   globalShortcut.register('CommandOrControl+D', () => {
-    console.log('Opening change host modal..')
+    console.log('Opening DevTools..')
     mainWindow.webContents.openDevTools()
 })
 
@@ -76,6 +77,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+  printInfo = false
 });
 
 app.on('activate', () => {
@@ -84,9 +86,18 @@ app.on('activate', () => {
   }
 });
 
+
+/*
+*   Listeners from renderer. Called when server sends message
+*/
 ipcMain.on("reboot-device", function() {
   rebootDevice()
 })
+ipcMain.on("restart-app", function() {
+  app.relaunch()
+  app.exit()
+})
+
 
 /*
 *   Reboots device
@@ -101,6 +112,9 @@ function rebootDevice() {
   })
 }
 
+/*
+*   Sends device info
+*/
 function sendDeviceInfo(physical_id) {
   var options = {}
       options["Host"] = host
@@ -121,4 +135,25 @@ function sendDeviceInfo(physical_id) {
       console.log(request.responseText)
     }
   }
+}
+
+function printDeviceInfo() {
+  setInterval(function() {
+    si.cpuCurrentspeed().then(data => {
+      fs.appendFile('logCPU.txt', data.avg + " ", function (err) {
+        if (err) throw err;
+      })
+    })
+  }, 500)
+
+  setInterval(function() {
+    si.mem().then(data => {
+      fs.appendFile('logRAM.txt', data.used + " ", function (err) {
+        if (err) throw err;
+      })
+    })
+  }, 500)
+    si.cpu().then(data => {
+      console.log(data.speedmax)
+    })
 }
