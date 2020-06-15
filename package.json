@@ -26,10 +26,17 @@
     "linux": {
       "target": {
         "target": "appimage",
-        "arch": ["armv7l"]
-      }
+        "arch": ["armv7l", "amd64"]
+      },
+      "icon": "./assets/icon/png/logo256.png"
     },
-    "icon": "./assets/icon/png/logo256.png"
+    "windows": {
+      "target": "NSIS",
+      "icon": "./assets/icon/png/logo.ico"
+    },
+    "mac": {
+      "icon": "./assets/icon/mac/logo256.icns.png"
+    }
   },
   "config": {
     "forge": {
