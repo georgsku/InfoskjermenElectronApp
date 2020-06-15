@@ -18,7 +18,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
-    kiosk: false,
+    kiosk: true,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -34,8 +34,6 @@ const createWindow = () => {
     mainWindow = null
   })
   
-  printDeviceInfo()
-
 };
 
 /*
