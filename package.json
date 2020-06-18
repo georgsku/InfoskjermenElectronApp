@@ -26,7 +26,7 @@
     "appId": "com.favo.infoskjermenplayer",
     "productName": "InfoskjermenPlayer",
     "mac": {
-      "target" : [
+      "target": [
         "dmg",
         "zip"
       ]
