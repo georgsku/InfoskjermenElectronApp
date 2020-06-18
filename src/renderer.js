@@ -84,7 +84,8 @@ window.onload = function() {
         request.onload = function() {
             if (request.status == 200) {
                 splashMessage("Let's go!")
-                myStorage.getItem("host") == null ? iframe.src = iframe.src = host+"/go" : myStorage.getItem("host")+"/go"
+                //myStorage.getItem("host") == null ? iframe.src = iframe.src = host+"/go" : myStorage.getItem("host")+"/go"
+                iframe.src = iframe.src = host+"/go"
             } else {
                 splashMessage("Reconnecting ... [500]")
                 setTimeout(iframe_load_go,10000)
