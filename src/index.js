@@ -97,7 +97,7 @@ ipcMain.on("restart-app", function() {
   app.relaunch()
   app.exit()
 })
-ipcMain.once("check-update", function() {
+ipcMain.on("check-update", function() {
   autoUpdater.checkForUpdates()
 })
 
