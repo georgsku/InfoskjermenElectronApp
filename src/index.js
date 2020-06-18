@@ -174,8 +174,8 @@ autoUpdater.on("checking-for-update", () => {
 
 autoUpdater.on("update-available", (info) => {
   sendStatusToWindows("Update available")
-  sendStatusToWindows("Version" + info.version)
-  sendStatusToWindows("Release date" + info.releaseDate)
+  sendStatusToWindows("Version: " + info.version)
+  sendStatusToWindows("Release date: " + info.releaseDate)
 })
 
 autoUpdater.on("update-not-available", () => {
@@ -186,7 +186,7 @@ autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  sendStatusToWindow(log_message);
+  sendStatusToWindows(log_message);
 })
 
 autoUpdater.on("update-downloaded", (info) => {
