@@ -25,6 +25,12 @@
     ],
     "appId": "com.favo.infoskjermenplayer",
     "productName": "InfoskjermenPlayer",
+    "mac": {
+      "target" : [
+        "dmg",
+        "zip"
+      ]
+    },
     "linux": {
       "target": {
         "target": "appimage",

@@ -71,8 +71,11 @@ app.whenReady().then(() => {
 
 app.on('ready', () => {
   createWindow()
-  autoUpdater.checkForUpdates()
 });
+
+app.on("ready", function() {
+  autoUpdater.checkForUpdatesAndNotify()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -190,7 +193,7 @@ autoUpdater.on("update-downloaded", (info) => {
 })
 
 autoUpdater.on("error", (error) => {
-  console.error(`Error in updater  : ${error.toString()}`)
+  console.error(`Error in updater : ${error.toString()}`)
 })
 
 
