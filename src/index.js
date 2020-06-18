@@ -74,7 +74,7 @@ app.on('ready', () => {
 });
 
 app.on("ready", function() {
-  autoUpdater.checkForUpdatesAndNotify()
+  setTimeOut(autoUpdater.checkForUpdatesAndNotify(), 5000)
 })
 
 app.on('window-all-closed', () => {
