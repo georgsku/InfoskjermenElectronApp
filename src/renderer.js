@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 console.log("Connected")
-console.log("old version!")
+console.log("newer version!")
 
 let host = "http://app.infoskjermen.no"
 //let host = "http://10.0.1.10:3000/v10/ppm128"
