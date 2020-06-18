@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const { autoUpdater } = require("electron-updater")
+const log = require('electron-log');
 const path = require('path');
 const shutdown = require('electron-shutdown-command');
 const si = require('systeminformation');
@@ -7,11 +8,10 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let pjson = require('../package.json');
 let fs = require('fs');
 
-autoUpdater.logger = require("electron-log")
+autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = "info"
 
 let mainWindow
-let printInfo = true
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -164,32 +164,38 @@ function printDeviceInfo() {
     setTimeout(printDeviceInfo, 1000)
 }
 
+const sendStatusToWindows = (text) => {
+  log.info(text)
+  if (mainWindow) {
+    mainWindow.webContents.send("message", text)
+  }
+}
 
 autoUpdater.on("checking-for-update", () => {
-  console.log("checking for update...")
+  sendStatusToWindows("Checking for update...")
 })
 
 autoUpdater.on("update-available", (info) => {
-  console.log("Update available")
-  console.log("Version", info.version)
-  console.log("Release date", info.releaseDate)
+  sendStatusToWindows("Update available")
+  sendStatusToWindows("Version", info.version)
+  sendStatusToWindows("Release date", info.releaseDate)
 })
 
 autoUpdater.on("update-not-available", () => {
-  console.log("Update not available")
+  sendStatusToWindows("Update not available")
 })
 
 autoUpdater.on("download-progress", (progress) => {
-  console.log(`Progress ${math.floor(progress.percent)}`)
+  sendStatusToWindows(`Progress ${math.floor(progress.percent)}`)
 })
 
 autoUpdater.on("update-downloaded", (info) => {
-  console.log("Update downloaded")
+  sendStatusToWindows("Update downloaded")
   autoUpdater.quitAndInstall()
 })
 
 autoUpdater.on("error", (error) => {
-  console.error(error)
+  console.errer(error)
 })
 
 
