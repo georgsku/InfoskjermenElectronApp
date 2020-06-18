@@ -107,7 +107,10 @@ window.onload = function() {
     }
 
     ipcRenderer.on('message', function(event, text) {
-        console.log("message form updater:" + text)
+        console.log(text)
+    })
+
+    ipcRenderer.send("check-update", function() {
     })
 
 }

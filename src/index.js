@@ -73,10 +73,6 @@ app.on('ready', () => {
   createWindow()
 });
 
-app.on("ready", function() {
-  autoUpdater.checkForUpdatesAndNotify()
-})
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -100,6 +96,9 @@ ipcMain.on("reboot-device", function() {
 ipcMain.on("restart-app", function() {
   app.relaunch()
   app.exit()
+})
+ipcMain.once("check-update", function() {
+  autoUpdater.checkForUpdates()
 })
 
 
@@ -170,13 +169,12 @@ const sendStatusToWindows = (text) => {
 
 autoUpdater.on("checking-for-update", () => {
   sendStatusToWindows("Checking for update...")
-  mainWindow.webContents.send("message", "hello")
 })
 
 autoUpdater.on("update-available", (info) => {
   sendStatusToWindows("Update available")
-  sendStatusToWindows("Version", info.version)
-  sendStatusToWindows("Release date", info.releaseDate)
+  sendStatusToWindows("Version" + info.version)
+  sendStatusToWindows("Release date" + info.releaseDate)
 })
 
 autoUpdater.on("update-not-available", () => {
@@ -184,7 +182,7 @@ autoUpdater.on("update-not-available", () => {
 })
 
 autoUpdater.on("download-progress", (progress) => {
-  sendStatusToWindows(`Progress ${math.floor(progress.percent)}`)
+  sendStatusToWindows("Progress: "  + progress.percent)
 })
 
 autoUpdater.on("update-downloaded", (info) => {
