@@ -190,7 +190,7 @@ autoUpdater.on("update-downloaded", (info) => {
 })
 
 autoUpdater.on("error", (error) => {
-  console.error(error)
+  console.error(`Error in updater  : ${error.toString()}`)
 })
 
 
