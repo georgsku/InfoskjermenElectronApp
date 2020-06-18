@@ -5,15 +5,12 @@
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
+    "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist:windows": "electron-builder --windows",
-    "dist:linux": "electron-builder --linux"
+    "dist:linux": "electron-builder --linux",
+    "publish": "electron-builder --win -p always"
   },
   "keywords": [],
   "author": "favo",
@@ -41,16 +38,13 @@
       "icon": "./assets/icon/win/logo.ico",
       "target": {
         "target": "nsis",
-        "arch": [
-          "x64"
-        ]
+        "arch": "x64"
       }
     },
     "nsis": {
       "installerIcon": "./assets/icon/win/logo.ico",
       "uninstallerIcon": "./assets/icon/win/logo.ico",
-      "runAfterFinish": true,
-      "include": "build/installer.nsh"
+      "runAfterFinish": true
     }
   },
   "config": {
@@ -81,12 +75,14 @@
     }
   },
   "dependencies": {
+    "add": "^2.0.6",
     "electron-log": "^4.2.2",
     "electron-shutdown-command": "0.0.8",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.3.1",
     "systeminformation": "^4.26.9",
-    "xmlhttprequest": "^1.8.0"
+    "xmlhttprequest": "^1.8.0",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.51",

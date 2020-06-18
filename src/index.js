@@ -7,7 +7,7 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let pjson = require('../package.json');
 let fs = require('fs');
 
-autoUpdater.logger = require("el")
+autoUpdater.logger = require("electron-log")
 autoUpdater.logger.transports.file.level = "info"
 
 let mainWindow
@@ -38,8 +38,6 @@ const createWindow = () => {
     mainWindow = null
   })
 
-  printDeviceInfo()
-  
 };
 
 /*
