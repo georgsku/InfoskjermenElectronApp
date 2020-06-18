@@ -88,4 +88,5 @@ typings/
 # Electron-Forge
 out/
 
-release-builds
+release-builds/
+dist/

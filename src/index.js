@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
+const { autoUpdater } = require("electron-updater")
 const path = require('path');
 const shutdown = require('electron-shutdown-command');
 const si = require('systeminformation');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let pjson = require('../package.json');
 let fs = require('fs');
+const { info } = require('console');
 
 let mainWindow
 let printInfo = true
@@ -33,6 +35,8 @@ const createWindow = () => {
   mainWindow.on("closed", function () {
     mainWindow = null
   })
+
+  printDeviceInfo()
   
 };
 
@@ -69,7 +73,10 @@ app.whenReady().then(() => {
 
 })
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow()
+  autoUpdater.checkForUpdates()
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -136,7 +143,7 @@ function sendDeviceInfo(physical_id) {
 }
 
 function printDeviceInfo() {
-  setInterval(function() {
+  /* setInterval(function() {
     si.cpuCurrentspeed().then(data => {
       fs.appendFile('logCPU.txt', data.avg + " ", function (err) {
         if (err) throw err;
@@ -150,8 +157,39 @@ function printDeviceInfo() {
         if (err) throw err;
       })
     })
-  }, 500)
-    si.cpu().then(data => {
-      console.log(data.speedmax)
+  }, 500) */
+  si.mem().then(data => {
+      console.log(data.used)
     })
+    setTimeout(printDeviceInfo, 1000)
 }
+
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("checking for update...")
+})
+
+autoUpdater.on("update-available", (info) => {
+  console.log("Update available")
+  console.log("Version", info.version)
+  console.log("Release date", info.releaseDate)
+})
+
+autoUpdater.on("update-not-available", () => {
+  console.log("Update not available")
+})
+
+autoUpdater.on("download-progress", (progress) => {
+  console.log(`Progress ${math.floor(progress.percent)}`)
+})
+
+autoUpdater.on("update-downloaded", (info) => {
+  console.log("Update downloaded")
+  autoUpdater.quitAndInstall()
+})
+
+autoUpdater.on("error", (error) => {
+  console.error(error)
+})
+
+

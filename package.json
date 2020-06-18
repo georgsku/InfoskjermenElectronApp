@@ -13,9 +13,10 @@
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon/mac/logo256.icns --prune=true --out=release-builds",
     "package-win": "electron-packager . InfoskjermenPlayer --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icon/win/logo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"'InfoskjermenPlayer'\"",
     "package-linux": "electron-packager . InfoskjermenPlayer --overwrite --asar --platform=linux --arch=x64 --icon=assets/icon/png/logo256.png --prune=true --out=release-builds",
-    "deb64": "electron-installer-debian --src release-builds/InfoskjermenPlayer-linux-arm64/ --dest /installers --arch amd64",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "dist:windows": "electron-builder --windows",
+    "dist:linux": "electron-builder --linux"
   },
   "keywords": [],
   "author": "favo",
@@ -26,16 +27,26 @@
     "linux": {
       "target": {
         "target": "appimage",
-        "arch": ["armv7l", "amd64"]
+        "arch": [
+          "armv7l"
+        ]
       },
       "icon": "./assets/icon/png/logo256.png"
     },
-    "windows": {
-      "target": "NSIS",
-      "icon": "./assets/icon/png/logo.ico"
+    "win": {
+      "icon": "./assets/icon/win/logo.ico",
+      "target": {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
     },
-    "mac": {
-      "icon": "./assets/icon/mac/logo256.icns.png"
+    "nsis": {
+      "installerIcon": "./assets/icon/win/logo.ico",
+      "uninstallerIcon": "./assets/icon/win/logo.ico",
+      "runAfterFinish": true,
+      "include": "build/installer.nsh"
     }
   },
   "config": {
@@ -68,6 +79,7 @@
   "dependencies": {
     "electron-shutdown-command": "0.0.8",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^4.3.1",
     "systeminformation": "^4.26.9",
     "xmlhttprequest": "^1.8.0"
   },
