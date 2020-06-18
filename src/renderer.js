@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 console.log("Connected")
-console.log("newer version!")
+console.log("1.0.1!")
 
 let host = "http://app.infoskjermen.no"
 //let host = "http://10.0.1.10:3000/v10/ppm128"
@@ -105,10 +105,7 @@ window.onload = function() {
     }
 
     ipcRenderer.on('message', function(event, text) {
-        var container = document.getElementById('messages');
-        var message = document.createElement('div');
-        message.innerHTML = text;
-        container.appendChild(message);
+        console.log("message form updater:" + text)
     })
 
 }

@@ -11,11 +11,7 @@ let fs = require('fs');
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = "info"
 
-let mainWindow
-
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
+let mainWindow 
 
 const createWindow = () => {
   // Create the browser window.
