@@ -40,7 +40,7 @@ window.onload = function() {
     /*
     *   Listens from main and changes src and unpairs
     */
-    ipcRenderer.on("unpair-host", function(evet, message) {
+    ipcRenderer.on("unpair-host", function(event, message) {
         console.log(message)
         iframe.src = host + message
     })
@@ -48,7 +48,7 @@ window.onload = function() {
     /*
     *   Listens from main and opens change host view
     */
-    ipcRenderer.on("change-host-view", function(evet, message) {
+    ipcRenderer.on("change-host-view", function(event, message) {
         console.log(message)
         change_host_view.style.opacity == 0 ? change_host_view.style.opacity = 1 : change_host_view.style.opacity = 0
     })

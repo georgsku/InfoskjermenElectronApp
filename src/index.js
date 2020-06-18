@@ -162,13 +162,12 @@ function printDeviceInfo() {
 
 const sendStatusToWindows = (text) => {
   log.info(text)
-  if (mainWindow) {
-    mainWindow.webContents.send("message", text)
-  }
+  mainWindow.webContents.send("message", text)
 }
 
 autoUpdater.on("checking-for-update", () => {
   sendStatusToWindows("Checking for update...")
+  mainWindow.webContents.send("message", "hello")
 })
 
 autoUpdater.on("update-available", (info) => {
@@ -191,7 +190,7 @@ autoUpdater.on("update-downloaded", (info) => {
 })
 
 autoUpdater.on("error", (error) => {
-  console.errer(error)
+  console.error(error)
 })
 
 
