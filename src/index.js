@@ -73,6 +73,10 @@ app.on('ready', () => {
   createWindow()
 });
 
+app.on("ready", () => {
+  autoUpdater.checkForUpdates()
+})
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -96,9 +100,6 @@ ipcMain.on("reboot-device", function() {
 ipcMain.on("restart-app", function() {
   app.relaunch()
   app.exit()
-})
-ipcMain.on("check-update", function() {
-  autoUpdater.checkForUpdates()
 })
 
 

@@ -104,9 +104,6 @@ window.onload = function() {
         };
     
         request.send()
-        
-        ipcRenderer.send("check-update", function() {
-        })
     }
 
     ipcRenderer.on('message', function(event, text) {
