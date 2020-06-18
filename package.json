@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "publish": "electron-builder --win -p always"
   },
   "keywords": [],
-  "author": "favo",
+  "author": "Favo AS",
   "license": "MIT",
   "build": {
     "publish": [
