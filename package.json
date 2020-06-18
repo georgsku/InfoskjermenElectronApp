@@ -10,9 +10,6 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon/mac/logo256.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . InfoskjermenPlayer --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icon/win/logo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"'InfoskjermenPlayer'\"",
-    "package-linux": "electron-packager . InfoskjermenPlayer --overwrite --asar --platform=linux --arch=x64 --icon=assets/icon/png/logo256.png --prune=true --out=release-builds",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist:windows": "electron-builder --windows",
@@ -22,6 +19,13 @@
   "author": "favo",
   "license": "MIT",
   "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "georgsku",
+        "repo": "InfoskjermenElectronApp"
+      }
+    ],
     "appId": "com.favo.infoskjermenplayer",
     "productName": "InfoskjermenPlayer",
     "linux": {
@@ -77,6 +81,7 @@
     }
   },
   "dependencies": {
+    "electron-log": "^4.2.2",
     "electron-shutdown-command": "0.0.8",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.3.1",
@@ -90,8 +95,6 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
     "@electron-forge/maker-zip": "^6.0.0-beta.51",
     "electron": "^9.0.2",
-    "electron-builder": "^22.7.0",
-    "electron-installer-debian": "^3.0.0",
-    "electron-packager": "^14.2.1"
+    "electron-builder": "^22.7.0"
   }
 }

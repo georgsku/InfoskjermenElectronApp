@@ -6,7 +6,9 @@ const si = require('systeminformation');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let pjson = require('../package.json');
 let fs = require('fs');
-const { info } = require('console');
+
+autoUpdater.logger = require("el")
+autoUpdater.logger.transports.file.level = "info"
 
 let mainWindow
 let printInfo = true
