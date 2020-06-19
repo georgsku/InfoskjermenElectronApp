@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 console.log("Connected")
-console.log("1.0.3!")
+console.log("1.0.4!")
 
 let host = "http://app.infoskjermen.no"
 //let host = "http://10.0.1.10:3000/v10/ppm128"
@@ -13,7 +13,7 @@ window.onload = function() {
     change_host_view = document.getElementById('change_host_view');
     iframe = document.getElementById("iframe");
     splash = document.getElementById('splash')
-    storagehost = myStorage.getItem("host")
+    storagehost = myStorage.getItem("host") 
     
     console.log(myStorage.getItem("host"))
 
@@ -85,12 +85,12 @@ window.onload = function() {
         request.onload = function() {
             if (request.status == 200) {
                 splashMessage("Let's go!")
-                if (storagehost = null) {
+                if (storagehost == null) {
                     iframe.src = iframe.src = host+"/go"
                 } else {
-                    myStorage.getItem("host")+"/go"
+                    iframe.src = myStorage.getItem("host")+"/go"
                 }
-
+            } else {
                 splashMessage("Reconnecting ... [500]")
                 setTimeout(iframe_load_go,10000)
             }
