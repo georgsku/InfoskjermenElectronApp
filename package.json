@@ -34,7 +34,6 @@
     "linux": {
       "icon": "./assets/icon/png/logo256.png",
       "category": "Utility",
-      "artifactName": "InfoskjermenPlayer-armv7l.AppImage",
       "target": {
         "target": "appimage",
         "arch": [
@@ -42,7 +41,7 @@
         ]
       },
       "desktop": {
-        "Name": "Infoskjermen Player",
+        "Name": "InfoskjermenPlayer",
         "Terminal": "false",
         "X-GNOME-Autostart-enabled": "true"
       }
