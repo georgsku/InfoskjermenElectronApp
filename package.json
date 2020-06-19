@@ -38,7 +38,9 @@
           "armv7l"
         ]
       },
-      "icon": "./assets/icon/png/logo256.png"
+      "icon": "./assets/icon/png/logo256.png",
+      "artifactName": "InfoskjermenPlayer-armv7l.appimage",
+      "Desktop": "[Desktop Entry] Type=Apllication Name=InfoskjermenPlayer Exec=/home/pi/Downloads/InfoskjermenPlayer-armv7l.appimage"
     },
     "win": {
       "icon": "./assets/icon/win/logo.ico",
