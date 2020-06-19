@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "dist:windows": "electron-builder --windows",
     "dist:linux": "electron-builder --linux",
-    "publish": "electron-builder --win -p always"
+    "publish": "electron-builder --win --linux -p always"
   },
   "keywords": [],
   "author": "Favo AS",
