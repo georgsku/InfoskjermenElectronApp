@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "1.0.6",
+  "version": "0.1.0",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "publish": "electron-builder --linux -p always"
   },
   "keywords": [],
-  "author": "Favo AS",
+  "author": "Favo AS <georg@favo.no>",
   "license": "MIT",
   "build": {
     "publish": [
@@ -34,15 +34,9 @@
     "linux": {
       "icon": "./assets/icon/png/logo256.png",
       "category": "Application",
-      "artifactName": "InfoskjermenPlayer-armv7l.appimage",
-      "desktop": {
-        "Terminal": "false"
-      },  
+      "artifactName": "InfoskjermenPlayer-armv7l.deb",
       "target": {
-        "target": [
-          "appimage", 
-          "deb" 
-        ],
+        "target": "deb",
         "arch": [
           "armv7l"
         ]

@@ -1,7 +1,6 @@
 const { ipcRenderer } = require('electron');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 console.log("Connected")
-console.log("1.0.6!")
 
 let host = "http://app.infoskjermen.no"
 //let host = "http://10.0.1.10:3000/v10/ppm128"
@@ -16,6 +15,7 @@ window.onload = function() {
     storagehost = myStorage.getItem("host") 
     
     console.log(myStorage.getItem("host"))
+    console.log(window.location.hash.substring(1))
 
     iframe_load_go()
     
