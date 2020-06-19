@@ -16,6 +16,7 @@ let mainWindow
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    alwaysOnTop: true,
     width: 1920,
     height: 1080,
     kiosk: true,
@@ -23,6 +24,7 @@ const createWindow = () => {
       nodeIntegration: true,
     },
     frame: false,
+    icon: path.join(__dirname, './assets/icon/png/logo256.png')
   });
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   
