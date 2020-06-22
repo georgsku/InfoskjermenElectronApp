@@ -24,7 +24,7 @@ const createWindow = () => {
       nodeIntegration: true,
     },
     frame: false,
-    icon: path.join(__dirname, './assets/icon/png/logo256.png')
+    icon: path.join(__dirname, '../assets/icon/png/logo256.png')
   });
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   
