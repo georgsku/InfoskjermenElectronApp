@@ -42,7 +42,7 @@
         ]
       },
       "desktop": {
-        "Terminal": "false",
+        "Terminal": "false"
       }
     },
     "win": {
