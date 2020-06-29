@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -43,7 +43,8 @@
       "desktop": {
         "Name": "InfoskjermenPlayer",
         "Terminal": "false",
-        "X-GNOME-Autostart-enabled": "true"
+        "X-GNOME-Autostart-enabled": "true",
+        "Encoding": "UTF-8"
       }
     },
     "win": {

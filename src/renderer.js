@@ -28,7 +28,7 @@ window.onload = function() {
         var request = JSON.parse(e.data);
         
         switch (request.action) {
-            case "reboot":
+            case "reboot": 
                 ipcRenderer.send("reboot-device", "reboot")
                 break;
             case "restart":
