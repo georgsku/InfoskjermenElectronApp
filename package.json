@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -38,7 +38,11 @@
           "armv7l"
         ]
       },
+      "maintainer": "Favo AS",
+      "category": "AudioVideo",
+      "artifactName": "${productName}-${version}.${ext}",
       "desktop": {
+        "Name": "${productName}",
         "Terminal": "false"
       }
     },
