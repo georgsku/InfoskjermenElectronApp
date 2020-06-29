@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "linux": {
       "icon": "./assets/icon/png/logo256.png",
       "category": "Utility",
-      "artifactName": "infoskjermenplayer.AppImage",
+      "artifactName": "infoskjermenplayer.deb",
       "target": {
         "target": "deb",
         "arch": [
