@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "dist:windows": "electron-builder --windows",
     "dist:linux": "electron-builder --linux",
-    "publish": "electron-builder --linux -p always"
+    "publish": "electron-builder --linux --windows -p always"
   },
   "keywords": [],
   "author": "Favo AS <georg@favo.no>",
@@ -34,7 +34,6 @@
     "linux": {
       "icon": "./assets/icon/png/logo256.png",
       "category": "Utility",
-      "artifactName": "infoskjermenplayer.deb",
       "target": {
         "target": "deb",
         "arch": [
