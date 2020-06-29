@@ -1,7 +1,7 @@
 {
   "name": "infoskjermenelectronapp",
   "productName": "InfoskjermenPlayer",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Infoskjermen player for windows, mac og linux.",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "dist:windows": "electron-builder --windows",
     "dist:linux": "electron-builder --linux",
-    "publish": "electron-builder --linux --windows -p always"
+    "publish": "electron-builder --linux -p always"
   },
   "keywords": [],
   "author": "Favo AS <georg@favo.no>",
