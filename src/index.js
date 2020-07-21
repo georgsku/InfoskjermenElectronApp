@@ -13,13 +13,15 @@ autoUpdater.logger.transports.file.level = "info"
 
 let mainWindow 
 
+var host = "http://app.infoskjermen.no"
+
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     alwaysOnTop: true,
     width: 1920,
     height: 1080,
-    kiosk: true,
+    kiosk: false,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -53,7 +55,7 @@ app.whenReady().then(() => {
     app.relaunch()
     app.exit()
   })
-  // Opens change host input
+  //  Opens change host input
   globalShortcut.register('CommandOrControl+U', () => {
     console.log('Opening change host modal..')
     mainWindow.webContents.send("change-host-view", "change host")
@@ -63,7 +65,7 @@ app.whenReady().then(() => {
     console.log('Rebooting device..')
     rebootDevice()
   })
-  //  Opens debTools
+  //  Opens devTools
   globalShortcut.register('CommandOrControl+D', () => {
     console.log('Opening DevTools..')
     mainWindow.webContents.openDevTools()
@@ -103,7 +105,9 @@ ipcMain.on("restart-app", function() {
   app.relaunch()
   app.exit()
 })
-
+ipcMain.on("physical_id", (event, arg) => {
+  sendDeviceInfo(arg)
+})
 
 /*
 *   Reboots device
@@ -122,6 +126,7 @@ function rebootDevice() {
 *   Sends device info
 */
 function sendDeviceInfo(physical_id) {
+  console.log(physical_id)
   var options = {}
       options["Host"] = host
       options["App-version"] = pjson.version
@@ -129,11 +134,10 @@ function sendDeviceInfo(physical_id) {
       .then(data => options["Platform-OS"] = data.platform)
       si.system()
       .then(data => options["Model"] = data.model)
-      si.version()
-      .then(data => options["Uptime"] = data.uptime)
+      
 
   var request = new XMLHttpRequest();
-  request.open("post", host +"/listenerss/set_options/"+physical_id+"/");
+  request.open("post", host +"/listeners/set_options/"+physical_id+"/");
   request.setRequestHeader("Content-Type", "application/json");
   request.send('{"options":'+JSON.stringify(options)+'}');
   request.onreadystatechange = function() {

@@ -1,7 +1,6 @@
 const { ipcRenderer } = require('electron');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 console.log("Connected")
-console.log("New version")
 let host = "http://app.infoskjermen.no"
 //let host = "http://10.0.1.10:3000/v10/ppm128"
 //let host = "http://10.0.1.10:3000"
@@ -88,8 +87,9 @@ window.onload = function() {
                 if (storagehost == null) {
                     iframe.src = iframe.src = host+"/go"
                 } else {
-                    iframe.src = myStorage.getItem("host")+"/go"
+                    iframe.src = myStorage.getItem("host") + "/go"
                 }
+                iframe.onload = function() {fadeIn(iframe, 1500)}
             } else {
                 splashMessage("Reconnecting ... [500]")
                 setTimeout(iframe_load_go,10000)
@@ -107,11 +107,31 @@ window.onload = function() {
         };
     
         request.send()
+
+        sendPhysicalIdToMain()
     }
 
-    ipcRenderer.on('message', function(event, text) {
-        console.log(text)
-    })
+    /*
+    *   sends physical_id to main
+    */
+    function sendPhysicalIdToMain() {
+        var physical_id =  window.localStorage.physical_id
+        ipcRenderer.send("physical_id", physical_id)
+    }
 
+    /*
+    *   Fades out splashscreen
+    */
+    function fadeIn(el, duration) {
+        var step = 10 / duration,
+            opacity = 0;
+        function next() {
+            if (opacity >= 1) { return; }
+            el.style.opacity = ( opacity += step );
+            setTimeout(next, 10);
+        }
+        next();
+
+    }
 
 }

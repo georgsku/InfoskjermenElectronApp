@@ -32,6 +32,7 @@
       ]
     },
     "linux": {
+      "icon": "./asstes/icon/png/logo256.png",
       "target": {
         "target": "AppImage",
         "arch": [
@@ -39,12 +40,8 @@
         ]
       },
       "maintainer": "Favo AS",
-      "category": "AudioVideo",
-      "artifactName": "${productName}-${version}.${ext}",
-      "desktop": {
-        "Name": "${productName}",
-        "Terminal": "false"
-      }
+      "category": "Utility",
+      "artifactName": "InfoskjermenPlayer.AppImage"
     },
     "win": {
       "icon": "./assets/icon/win/logo.ico",
