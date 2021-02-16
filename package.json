@@ -88,7 +88,7 @@
     "electron-log": "^4.2.2",
     "electron-shutdown-command": "0.0.8",
     "electron-updater": "^4.3.1",
-    "systeminformation": "^4.26.9",
+    "systeminformation": "^5.3.1",
     "xmlhttprequest": "^1.8.0",
     "yarn": "^1.22.4"
   },
